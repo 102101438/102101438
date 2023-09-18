@@ -1,11 +1,16 @@
 import requests
 import re
+import jieba
+import wordcloud
 from bs4 import BeautifulSoup
 
 def get_video_url():
     video_url = []
     for page in range(1, 11):
-        url = f'https://search.bilibili.com/all?vt=68973445&keyword=日本核污染水排海&page={page}'
+        if page == 1:
+            url = 'https://search.bilibili.com/all?keyword=%E6%97%A5%E6%9C%AC%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4%E6%8E%92%E6%B5%B7&from_source=webtop_search&spm_id_from=333.1007&search_source=3'
+        else:
+            url = 'https://search.bilibili.com/all?vt=46889243&keyword=%E6%97%A5%E6%9C%AC%E6%A0%B8%E6%B1%A1%E6%9F%93%E6%B0%B4%E6%8E%92%E6%B5%B7&from_source=webtop_search&spm_id_from=333.1007&search_source=3&page={page}&o={(page-1)*20}'
         headers = {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 Edg/116.0.1938.76'
         }
@@ -16,41 +21,48 @@ def get_video_url():
     return video_url
 
 def get_dm_url(video_url):
-    dm_url=[]
-    for index in video_url:
-        url='https://www.ibilibili.com/video/'+index
+    dm_url = []
+    for bv in video_url:
+        url = 'https://www.ibilibili.com/video/'+bv
         dm_url.append(url)
     return dm_url
 
 def get_danmu_url(dm_url):
-    danmu_url=[]
+    danmu_url = []
     for url in dm_url:
         response = requests.get(url=url)
         response.encoding = 'utf-8'
         dan_url = re.findall('<a href="(.*?)" class="btn btn-default" target="_blank">弹幕</a>', response.text)
         danmu_url += dan_url
+    return danmu_url
 
 def get_danmu(danmu_url):
     for url in danmu_url:
         response = requests.get(url=url)
         response.encoding = 'utf-8'
-        danmu_list = re.findall('</d><d p=".*?">(.*?)</d>', response.text)
+        danmu_list = re.findall('<d p=".*?">(.*?)</d>', response.text)
         for danmu in danmu_list:
             with open('dm.txt', mode='a', encoding='utf-8') as f:
                 f.write(danmu)
                 f.write('\n')
+                print(danmu)
 
-import jieba
-import wordcloud
-f = open('dm.txt', encoding='utf-8')
-txt = f.read()
-string = ' '.join(jieba.lcut(txt))
-wc = wordcloud.WordCloud(
-    width=700,
-    height=700,
-    background_color='white',
-    font_path='msyh.ttc',
-    scale=15,
-)
-wc.generate(string)
-wc.to_file('dmcy.png')
+def get_ciyun():
+    f = open('dm.txt', encoding='utf-8')
+    txt = f.read()
+    string = ' '.join(jieba.lcut(txt))
+    wc = wordcloud.WordCloud(
+        width=700,
+        height=700,
+        background_color='white',
+        font_path='msyh.ttc',
+        scale=15,
+    )
+    wc.generate(string)
+    wc.to_file('dmcy.png')
+
+video_url = get_video_url()
+dm_url = get_dm_url(video_url)
+danmu_url = get_danmu_url(dm_url)
+get_danmu(danmu_url)
+get_ciyun()
