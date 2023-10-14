@@ -1,0 +1,286 @@
+tomenu: function() {
+    wx.navigateTo({
+      url: '../index/index'
+    })
+  },
+  dicechange1: function() {
+    var locksno1=this.data.locksno1;
+    var lock1=this.data.lock1;
+    var zhitouzi1=this.data.zhitouzi1;
+    let dice = [];
+    if(zhitouzi1==false){
+      console.log("骰子已经投掷过");
+      return;
+    }
+    for(let i = 0; i < 5; i++) {
+        // 生成1到6的随机整数
+        let roll = Math.floor(Math.random() * 6) + 1;
+        dice.push(roll);
+    }
+    // 使用setData更新页面数据
+    for(let i=0;i<locksno1.length;i++){
+      dice[locksno1[i]]=lock1[i];
+    }
+    this.setData({
+      dicearray1: dice,
+      zhitouzi1:false
+    });
+    
+    console.log(dice);
+  },
+  dicechange2: function() {
+    var locksno2=this.data.locksno2;
+    var lock2=this.data.lock2;
+    var zhitouzi2=this.data.zhitouzi2;
+    let dice = [];
+    if(zhitouzi2==false){
+      console.log("骰子已经投掷过");
+      return;
+    }
+    for(let i = 0; i < 5; i++) {
+        // 生成1到6的随机整数
+        let roll = Math.floor(Math.random() * 6) + 1;
+        dice.push(roll);
+    }
+    // 使用setData更新页面数据
+    for(let i=0;i<locksno2.length;i++){
+      dice[locksno2[i]]=lock2[i];
+    }
+    this.setData({
+      dicearray2: dice,
+      zhitouzi2:false
+    });
+    
+    console.log(dice);
+  },
+  
+
+  Touzishow:function (touzi, lock_touzi){
+  
+
+    //console.log("touzi.length001:"+lock_touzi.length);
+    var touzilen = lock_touzi.length;
+    for (var i = 0; i < 5 - touzilen; i ++){
+        touzi[i] = Math.round(Math.random() * (6 - 1) + 1);
+        //console.log("touzi.length:"+touzi.length);
+        //console.log(touzi[i]);
+        
+    }
+    console.log("骰子：" + touzi);
+  },
+  //Touzishow(touzi1, lock1);
+  //player1.printplayer();
+  //console.log("当前锁定：" + lock1);
+   Locktouzi:function (event){
+    var sno=Number(event.currentTarget.dataset.sno);
+    var dice_touzi1=this.data.dicearray1;
+    var dice_touzi2=this.data.dicearray2;
+    var lock_touzi1=this.data.lock1;
+    var lock_touzi2=this.data.lock2;
+    var locksno1=this.data.locksno1;
+    var locksno2=this.data.locksno2;
+    if(sno>=0){
+      console.log(sno);
+    }
+    
+    if(sno >= 0 && sno <= 4){
+        for(var i = 0; i < locksno1.length; i ++){
+            if(sno == locksno1[i]){
+                console.log("error:The dice was locked");
+                return ;
+            }
+        }
+        locksno1[locksno1.length]= sno;
+        var touzilen = lock_touzi1.length;
+      lock_touzi1[touzilen] = dice_touzi1[sno];
+      console.log("锁定的骰子:" + lock_touzi1);
+      this.setData({
+        lock1:lock_touzi1,
+        locksno1:locksno1,
+      })
+    }
+    else if(sno>=5&&sno<=9){
+        sno -= 5;
+        for(var i = 0; i < locksno2.length; i ++){
+            if(sno == locksno2[i]){
+                console.log("error:The dice was locked");
+                return ;
+            }
+        }
+        locksno2[locksno2.length] = sno;
+        
+        var touzilen = lock_touzi2.length;
+      lock_touzi2[touzilen] = dice_touzi2[sno];
+      console.log("锁定的骰子:" + lock_touzi2);
+      this.setData({
+        lock2:lock_touzi2,
+        locksno2:locksno2,
+      })
+    }
+   
+    
+},
+  //Locktouzi(sno, touzi1, lock1);
+  
+   Ratetouzi:function (event){
+    var sno=Number(event.currentTarget.dataset.sno);
+    if(sno>=0&&sno<=4){
+        var rate=this.data.rate1;
+      var sumrate=this.data.sumrate;
+      if(rate == 4){
+          return ;
+      }
+      rate ++;
+      sumrate++;
+      console.log("倍数" + rate);
+      this.setData({
+        rate1:rate,
+        sumrate:sumrate
+      })
+
+    }
+     else if(sno>=5&&sno<=9){
+      var rate=this.data.rate2;
+      var sumrate=this.data.sumrate;
+     if(rate == 4){
+         return ;
+     }
+     rate ++;
+     sumrate++;
+     console.log("倍数" + rate);
+     this.setData({
+       rate2:rate,
+       sumrate:sumrate
+     })
+
+     }
+  },
+  //Ratetouzi(rate1);
+  /*
+  for(var i = 0; i < 5; i ++){
+        sumscore1 += lock1[i];
+  }
+  */
+  
+  //console.log("总分:" + sumscore1);
+   Score:function(lock1, sumscore1,sno){
+     var type =this.data.type1;
+    //console.log(sumscore1);
+    var counts = [0,0,0,0,0,0];
+    for(var i = 0; i < 5; i ++){
+  
+        sumscore1 += lock1[i];
+    }
+    //console.log(sumscore1);
+    for(var j = 0; j < 6; j ++){
+  
+        for(var i = 0; i < 5; i ++){
+            if(lock1[i] == j + 1)
+            counts[j] ++;
+        }
+    }
+    counts.sort();
+    counts.reverse();
+   // console.log("数量统计：" + counts);
+    if(counts[0] == 5){
+        sumscore1 += 100;
+        type="五连";
+        console.log("五连");
+    }
+    else if(counts[0] == 4){
+        sumscore1 += 40;
+        type="四连";
+        console.log("四连");
+    }
+    else if(counts[0] == 3 && counts[1] == 2){
+        sumscore1 += 20;
+        type="葫芦";
+        console.log("葫芦");
+    }
+    else if(counts[0] == 3 && counts[1] == 1 ){
+        sumscore1 += 10;
+        type="三连";
+        console.log("三连");
+    }
+    else if(counts[0] == 2 && counts[1] == 2){
+        sumscore1 += 10;
+        type="双对";
+        console.log("双对");
+    }
+    else{
+        lock1.sort();
+        //console.log("paixuhou:" + lock1);
+        if(counts[0] == 1 && lock1[4] - lock1[0] == 4){
+            sumscore1 += 60;
+            type="大顺子";
+            console.log("大顺子");
+        }
+        else if(lock1[4] - lock1[0] == 3){
+            sumscore1 += 30;
+            type="小顺子";
+            console.log("小顺子");
+        }
+        else if((counts[0] == 1 && (lock1[4] - lock1[3] == 2)) || (counts[0] == 1 && (lock1[1] - lock1[0] == 2))){
+            sumscore1 += 30;
+            type="小顺子";
+            console.log("小顺子");
+        }
+        else{
+          type="其他";
+            console.log("其他");
+        }
+
+    }
+    if(sno==0){
+      this.setData({
+        type1:type,
+      })
+    }
+    else if(sno==5){
+      this.setData({
+        type2:type,
+      })
+    }
+    
+    return sumscore1;
+    console.log(sumscore1);
+    
+  },
+  
+  //Score(lock1, sumscore1);
+
+ Maingame:function() {
+  var that=this;
+  var sumrate = 0;
+  var dice1=[]; 
+  var dice2=[];
+  var lock1=[];
+  var lock2=[];
+  var chip1 = 1000;
+  var chip2 = 1000;
+  var sno = 0;
+  var rate1 = 0;
+  var rate2 = 0;
+  //var player0 = new Players("0", [], [1,1,1,1,1], 1000, 1);
+  
+  var sumscore1 = 0;
+  var sumscore2 = 0;
+  
+  var aaa = false;
+  var rounds=1;
+  outer: for(var i = 1; i <= rounds; i++){
+      console.log("player1的筹码：" + chip1);
+      console.log("player2的筹码：" + chip2);
+
+      if(chip1<= 0){
+          console.log("player1的筹码已用完，游戏结束");
+
+          game_over = true;   
+          break outer;
+      }
+      else if(chip2 <= 0){
+          console.log("player1的筹码已用完，游戏结束");
+
+          game_over = true;   
+          break outer;
+      }
