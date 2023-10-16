@@ -1,0 +1,27 @@
+/**app.wxss**/
+.mt600 {
+  margin-top: 600rpx;
+}
+.mt60 {
+  margin-top: 60rpx;
+}
+.mb210 {
+  margin-bottom: 210rpx;
+}
+.chushi{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.bendi{
+  background-color: aliceblue;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
