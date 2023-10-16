@@ -1,0 +1,23 @@
+
+<view class="caidan" style="background-image:url(/image/主页.png);" >
+    <button type="primary" bindtap="tobendi" class="mt600" >
+      本地
+    </button>
+    <button type="primary" class="mt60" >
+      在线
+    </button>
+    <button type="primary" class="mt60" >
+      人机
+    </button>
+    <button type="primary" class="mt60" >
+      排行榜
+    </button>
+    <button type="primary" bindtap="toguize" class="mt60,mb210" >
+      规则
+    </button>
+
+
+
+    
+</view>
+

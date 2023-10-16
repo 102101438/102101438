@@ -1,0 +1,21 @@
+.guizetu1{
+  width: 250px;
+  height: 200px;
+  align-items: center;
+}
+.guizetu2{
+  width: 250px;
+  height: 150px;
+  align-items: center;
+}
+.text{
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  position: absolute;
+  top: 10rpx;
+  left: 100rpx;
+  right: 100rpx;
+}

@@ -1,0 +1,177 @@
+.huihe{
+  position: absolute;
+  top: 45%;
+  left: 65%;
+}
+.text{
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
+.smalltext{
+  justify-content: center;
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: row;
+}
+.bigtext{
+  justify-content: center;
+  font-size: 30rpx;
+  display: flex;
+  flex-direction: row;
+}
+.frame{
+  width: 115px;
+  height: 115px;
+}
+.dice{
+  width: 45px;
+  height: 45px;
+}
+.dice1{
+  position: absolute;
+  top: 60rpx;
+  left: 40rpx;
+}
+.dice2{
+  position: absolute;
+  top: 60rpx;
+  left: 150rpx;
+}
+.dice3{
+  position: absolute;
+  top: 60rpx;
+  left: 260rpx;
+}
+.dice4{
+  position: absolute;
+  top: 60rpx;
+  left: 370rpx;
+}
+.dice5{
+  position: absolute;
+  top: 60rpx;
+  left: 480rpx;
+}
+.frame1{
+  position: absolute;
+  top: 70rpx;
+  left: 70rpx;
+  width: 300px;
+  height: 100px;
+}
+.inframe1{
+  width: 180px;
+  height: 120px;
+  position: absolute;
+  top: 300rpx;
+  left: 70rpx;
+}
+.player1{
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  position: absolute;
+  top: 40rpx;
+  left: 50rpx;
+  width: 300px;
+}
+.xuanxiang1{
+  padding: 3rpx 3rpx;
+  position: absolute;
+  top: 160px;
+  left: 65%;
+}
+.xx1{
+  position: absolute;
+  top: 200px;
+  left: 65%;
+}
+.xx2{
+  position: absolute;
+  top: 240px;
+  left: 65%;
+}
+.dice6{
+  position: absolute;
+  top: 60rpx;
+  left: 40rpx;
+}
+.dice7{
+  position: absolute;
+  top: 60rpx;
+  left: 150rpx;
+}
+.dice8{
+  position: absolute;
+  top: 60rpx;
+  left: 260rpx;
+}
+.dice9{
+  position: absolute;
+  top: 60rpx;
+  left: 370rpx;
+}
+.dice10{
+  position: absolute;
+  top: 60rpx;
+  left: 480rpx;
+}
+
+.frame2{
+  position: absolute;
+  top: 870rpx;
+  left: 70rpx;
+  width: 300px;
+  height: 100px;
+}
+
+.inframe2{
+  width: 180px;
+  height: 120px;
+  position: absolute;
+  top: 1100rpx;
+  left: 70rpx;
+}
+.player2{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  position: absolute;
+  top: 40rpx;
+  left: 50rpx;
+  font-size: small;
+}
+.xuanxiang2{
+  padding: 3rpx 3rpx;
+  position: absolute;
+  top: 1130rpx;
+  left: 65%;
+}
+.xx3{
+  position: absolute;
+  top: 1210rpx;
+  left: 65%;
+}
+.xx4{
+  position: absolute;
+  top: 1290rpx;
+  left: 65%;
+}
+.text1{
+  position: absolute;
+  top: 600rpx;
+  left: 100rpx;
+}
+.text2{
+  position: absolute;
+  top: 650rpx;
+  left: 100rpx;
+}
+.text3{
+  position: absolute;
+  top: 700rpx;
+  left: 100rpx;
+}

@@ -1,0 +1,73 @@
+<view  class="bendi" style="background-image:url(/image/背景.png);background-position: center;">
+<!--player1-->
+<view >
+  <image src="/image/dise.png" class="frame frame1">
+  <image src="{{diceimage[dicearray1[0]-1]}}" class="dice dice1" data-sno="0" bindtap="Locktouzi"></image>
+  <image src="{{diceimage[dicearray1[1]-1]}}" class="dice dice2" data-sno="1" bindtap="Locktouzi"></image>
+  <image src="{{diceimage[dicearray1[2]-1]}}" class="dice dice3" data-sno="2" bindtap="Locktouzi"></image>
+  <image src="{{diceimage[dicearray1[3]-1]}}" class="dice dice4" data-sno="3" bindtap="Locktouzi"></image>
+  <image src="{{diceimage[dicearray1[4]-1]}}" class="dice dice5" data-sno="4" bindtap="Locktouzi"></image>
+  </image>
+  
+  <image src="/image/dise.png" class="inframe1">
+    <span class="player1">
+  <text>player_1</text>
+  <text>拥有筹码：{{chip1}}</text>
+  <text>选定点数：{{lock1}}</text>
+  <text>样式奖励分：{{type1}}</text>
+    <text>倍率：{{rate1}}</text>
+    </span>
+    
+  </image>
+  <button class="xuanxiang1" style="width: 150rpx; height: 40rpx;" bindtap="dicechange1">
+  <text class="smalltext">投掷</text>
+  </button>
+  <button class="xuanxiang1 xx1" style="width: 150rpx; height: 40rpx;" bindtap="Ratetouzi" data-sno="0">
+    <text class="smalltext">加倍</text>
+  </button>
+  <button class="xuanxiang1 xx2" style="width: 150rpx; height: 40rpx;" bindtap="Confirm" data-sno="0">
+    <text class="smalltext">确认</text>
+  </button>
+</view>
+<!--player2-->
+<view >
+  <image src="/image/dise.png" class="frame frame2" bindtap="Locktouzi">
+    <image src="{{diceimage[dicearray2[0]-1]}}" class="dice dice6" bindtap="Locktouzi" data-sno="5"></image>
+  <image src="{{diceimage[dicearray2[1]-1]}}" class="dice dice7" bindtap="Locktouzi" data-sno="6"></image>
+  <image src="{{diceimage[dicearray2[2]-1]}}" class="dice dice8" bindtap="Locktouzi" data-sno="7"></image>
+  <image src="{{diceimage[dicearray2[3]-1]}}" class="dice dice9 " bindtap="Locktouzi" data-sno="8"></image>
+  <image src="{{diceimage[dicearray2[4]-1]}}" class="dice dice10" bindtap="Locktouzi" data-sno="9"></image>
+  </image>
+  <image src="/image/dise.png" class="inframe2">
+  <span class="player2">
+    <text>player_2</text>
+  <text>拥有筹码：{{chip2}}</text>
+  <text>选定点数：{{lock2}}</text>
+  <text>样式奖励分：{{type2}}</text>
+    <text>倍率：{{rate2}}</text>
+    </span>
+    
+  </image>
+  <button class="xuanxiang2" style="width: 150rpx; height: 40rpx;" bindtap="dicechange2">
+  <text class="smalltext">投掷</text>
+  </button>
+  <button class="xuanxiang2 xx3" style="width: 150rpx; height: 40rpx;" bindtap="Ratetouzi" data-sno="5">
+    <text class="smalltext">加倍</text>
+  </button>
+  <button class="xuanxiang2 xx4" style="width: 150rpx; height: 40rpx;" bindtap="Confirm" data-sno="5">
+    <text class="smalltext">确认</text>
+  </button>
+</view>
+<!--信息-->
+<view>
+<text class="text text1">总倍率：{{sumrate}}</text>
+<text class="text text2">当前轮数：{{rounds}}/3</text>
+<text class="text text3">当前局数：{{jushu}}</text>
+</view>
+<view>
+<button class="huihe" style="width: 200rpx; height: 80rpx;" bindtap="nextround">
+  <text class="bigtext">下一局</text>
+  </button>
+</view>
+
+</view>
